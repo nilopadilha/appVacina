@@ -22,7 +22,7 @@ public class Pessoa {
     private String nome;
     @Column(name = "datanascimento", nullable = false)
     private LocalDate dataNascimento;
-    @Column(name = "nome", nullable = false)
+    @Column(name = "cpf", nullable = false)
     private String Cpf;
 
   /*  pessoaId (fk) String null
