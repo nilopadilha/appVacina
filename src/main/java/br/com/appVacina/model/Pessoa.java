@@ -4,11 +4,17 @@ package br.com.appVacina.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="pessoas")
 public class Pessoa {
@@ -24,11 +30,13 @@ public class Pessoa {
     private LocalDate dataNascimento;
     @Column(name = "cpf", nullable = false)
     private String Cpf;
+    @OneToMany(mappedBy = "pessoa_endereco_id", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Endereco> enderecos = new ArrayList<>();
+    @OneToMany(mappedBy = "pessoa_email_id", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Email> emails = new ArrayList<>();;
+    @OneToMany(mappedBy = "pessoa_telefone_id", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Telefone> telefones = new ArrayList<>();;
 
-  /*  pessoaId (fk) String null
-    endereco : List<Endereco>
-    email : List<Email>
-    teleonfe : List<Telefone>
-*/
+  /*  pessoaId (fk) String null*/
 
 }
